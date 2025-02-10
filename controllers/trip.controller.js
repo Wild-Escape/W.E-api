@@ -1,1 +1,2 @@
-const Trip = require ("../models/Trip.model")
+const Trip = require ("../models/Trip.model");
+

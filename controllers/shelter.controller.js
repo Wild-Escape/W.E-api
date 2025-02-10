@@ -1,6 +1,7 @@
 const Shelter = require("../models/Shelter.model")
 
 module.exports.create = async (req, res, next) =>{
+    // check if req.currentUserid is getting properly 
     if (req.file) req.body.imageUrl = req.file.path;
 
     const shelter = new Shelter ({
