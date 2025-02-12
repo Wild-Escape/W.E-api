@@ -1,4 +1,4 @@
-const Shelter = require("../models/Shelter.model")
+const Shelter = require("../models/Experience.model")
 
 module.exports.create = async (req, res, next) =>{
     // check if req.currentUserid is getting properly 
