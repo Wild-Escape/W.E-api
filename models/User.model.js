@@ -11,7 +11,7 @@ const UserSchema = new mongoose.Schema(
     password: { type: String, required: true },
     role: {
       type: String,
-      enum: ["user", "admin"],
+      enum: ["user", "partner"],
       default: "user",
       required: true,
     },
@@ -38,31 +38,33 @@ UserSchema.virtual("favorites", {
   foreignField: "user",
 });
 
-UserSchema.virtual("trips", {
-  ref: "Trip",
-  localField: "_id",
-  foreignField: "user",
-});
 
-UserSchema.virtual("reserved-trips", {
+UserSchema.virtual("pending-experiences", {
   ref: "Shelter",
   localField: "_id",
-  foreignField: "owner",
+  foreignField: "partner",
 });
 
-// Admin case
-
-UserSchema.virtual("shelters", {
+UserSchema.virtual("confirmed-experiences", {
   ref: "Shelter",
   localField: "_id",
-  foreignField: "owner",
+  foreignField: "partner",
 });
 
-UserSchema.virtual("Confirmed-trips", {
+// Partner case
+
+UserSchema.virtual("confirmed-experiences", {
   ref: "Trip",
   localField: "_id",
-  foreignField: "shelter",
+  foreignField: "experience",
 });
+
+UserSchema.virtual("inReview-experiences", {
+  ref: "Trip",
+  localField: "_id",
+  foreignField: "experience",
+});
+
 
 UserSchema.pre("save", function (next) {
   const user = this;

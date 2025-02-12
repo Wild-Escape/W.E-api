@@ -1,5 +1,5 @@
 const Trip = require ("../models/Trip.model");
-const Shelter = require("../models/Shelter.model")
+const Shelter = require("../models/Experience.model")
 const User = require("../models/User.model");
 
 // 1. Get All Trips (for users to view available trips)
