@@ -2,7 +2,7 @@ const Shelter = require("../models/Shelter.model")
 
 module.exports.create = async (req, res, next) =>{
     // check if req.currentUserid is getting properly 
-    if (req.file) req.body.imageUrl = req.file.path;
+    console.log("This is the current user-->", req.currentUserId)
 
     const shelter = new Shelter ({
         name : req.body.name,
@@ -12,6 +12,7 @@ module.exports.create = async (req, res, next) =>{
         capacity: req.body.capacity,
         amenities: req.body.amenities,
         images: req.body.imageUrl,
+        //owner: req.body.owner
         owner: req.currentUserid, 
     })
     

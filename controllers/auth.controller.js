@@ -49,7 +49,7 @@ module.exports.login = (req, res, next) => {
 }
 
 module.exports.getUser = (req, res, next) => {
-  console.log("the id -->",req.currentUserId)
+  
   User.findById(req.currentUserId)
   .then((user) => {
     res.status(200).json({user});

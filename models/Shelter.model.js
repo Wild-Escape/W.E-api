@@ -5,8 +5,7 @@ const ShelterSchema = new mongoose.Schema(
     name: { type: String, required: true },
     description: { type: String, required: true },
     location: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Coordinates",
+      type: String,
       required: true,
     },
     pricePerNight: { type: Number, required: true },
