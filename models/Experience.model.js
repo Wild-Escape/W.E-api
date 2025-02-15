@@ -8,26 +8,21 @@ const ExperienceSchema = new mongoose.Schema(
     category: { type: [String], required: true },
     duration: { type: Number, required: true },
     dates: { type: Number, required: true },
-    type: { type: [String], enum: ['express', 'short stay', 'long stay'], required: true },
-    activities: { type: String, required: true },
-    partner: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
-    location: { type: String, required: true },
-    coordinates: {
-      latitude:  {
-        type: Number,
-        required: true,
-        min: [-90, "Latitude must be between -90 and 90"],
-        max: [90, "Latitude must be between -90 and 90"],
-      },
-      longitude: {
-        type: Number,
-        required: true,
-        min: [-180, "Longitude must be between -180 and 180"],
-        max: [180, "Longitude must be between -180 and 180"],
-      }
+    type: {
+      type: [String],
+      enum: ["express", "short stay", "long stay"],
+      required: true,
     },
-    gallery: { type: String, required: true },
-    favorites: { type: [mongoose.Schema.Types.ObjectId], ref: "User" },
+    activities: { type: String, required: true },
+    partner: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+    location: { type: String, required: true },
+    coordinates: { type: String, required: true },
+
+    gallery: [{ type: String, required: true }],
     reviews: { type: [mongoose.Schema.Types.ObjectId], ref: "Review" },
     highlights: { type: [String] },
     status: {
@@ -38,9 +33,16 @@ const ExperienceSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
+    toJSON: {
+      virtuals: true,
+    },
   }
 );
 
-
+ExperienceSchema.virtual("favorites", {
+  ref: "Favorite",
+  localField: "_id",
+  foreignField: "experience",
+});
 
 module.exports = mongoose.model("Experience", ExperienceSchema);

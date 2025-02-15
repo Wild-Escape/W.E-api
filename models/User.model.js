@@ -32,11 +32,7 @@ const UserSchema = new mongoose.Schema(
   }
 );
 // Normal user case
-UserSchema.virtual("favorites", {
-  ref: "Favorite",
-  localField: "_id",
-  foreignField: "user",
-});
+
 
 
 UserSchema.virtual("pending-experiences", {
