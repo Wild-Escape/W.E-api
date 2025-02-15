@@ -33,8 +33,6 @@ const UserSchema = new mongoose.Schema(
 );
 // Normal user case
 
-
-
 UserSchema.virtual("pending-experiences", {
   ref: "Shelter",
   localField: "_id",
