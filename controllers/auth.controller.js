@@ -20,7 +20,8 @@ module.exports.register = async (req, res, next) => {
 
 module.exports.login = (req, res, next) => {
   const {email, password} = req.body; 
-
+console.log("**email** -->>", email);
+console.log("**password** -->>", password);
   const loginError = createError(401, "Email or password incorrect");
    User
     .findOne({email})
