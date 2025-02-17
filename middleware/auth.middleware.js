@@ -3,7 +3,7 @@ const createError = require("http-errors");
 
 module.exports.isAuthenticated = (req, res, next) => {
   const authorization = req.header("Authorization");
-console.log("authorization header--->>", authorization)
+
   if (!authorization) {
     return next(createError(401, "Authorization headder is required"));
   }
