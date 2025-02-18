@@ -4,11 +4,15 @@ const Reservation = require("../models/Reservation.model");
 // Create experience
 module.exports.create = async (req, res, next) => {
     if(req.files) req.body.gallery = req.files.map((file) => file.path);
+   console.log("checking availbale dates in the bakcend START--->>", JSON.parse(req.body.availableDates))
     const experience = new Experience({
         ...req.body,
         partner: req.currentUserId,
         gallery: req.body.gallery,
+        availableDates: JSON.parse(req.body.availableDates)
 
+      
+        
     })
     try {
         const newExperience = await experience.save();
