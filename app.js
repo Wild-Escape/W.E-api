@@ -5,16 +5,18 @@ const router = require("./routes/routes");
 const mongoose = require("mongoose");
 const createError = require("http-errors");
 const jwt = require("jsonwebtoken");
-const cors = require("cors")
+const cors = require("cors");
 
-const app = express();console.log("before db config line")
+const app = express();
+console.log("before db config line");
 require("./config/db.config");
 
 app.use(
   cors({
-    origin:["http://localhost:5173"]
+    origin: ["http://localhost:5173"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
-)
+);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

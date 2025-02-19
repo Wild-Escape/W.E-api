@@ -6,8 +6,14 @@ const ExperienceSchema = new mongoose.Schema(
     intro: { type: String, required: true },
     price: { type: Number, required: true },
     category: { type: [String], required: true },
-    duration: { type: Number, required: true },
-    dates: { type: Number, required: true },
+    duration: { type: String, required: true },
+    availableDates: [
+      {
+        start: { type: Date, required: true },
+        end: { type: Date, required: true },
+      },
+    ],
+    bookedDates : [{type: Date}],
     type: {
       type: [String],
       enum: ["express", "short stay", "long stay"],
@@ -20,7 +26,7 @@ const ExperienceSchema = new mongoose.Schema(
       required: true,
     },
     location: { type: String, required: true },
-    coordinates: { type: String, required: true },
+    coordinates: { type: String, default: "dummy coordinates" },
 
     gallery: [{ type: String, required: true }],
     reviews: { type: [mongoose.Schema.Types.ObjectId], ref: "Review" },

@@ -25,11 +25,11 @@ router.get("/me", isAuthenticated, authController.getUser);
 router.post(
   "/experience/create",
   isAuthenticated,
-  upload.array("imageUrl", 5),
+  upload.array("gallery", 5),
   experienceController.create
 );
 // 2. Get all experiences (for users to view available trips)
-router.get("/experiences", isAuthenticated, experienceController.getAllTrips);
+router.get("/experiences",  experienceController.getAllTrips);
 // 3. Get details of a specific trip
 router.get("/experience/:id",isAuthenticated, experienceController.getTripById);
 
