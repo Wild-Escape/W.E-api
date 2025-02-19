@@ -20,6 +20,8 @@ module.exports.register = async (req, res, next) => {
 
 module.exports.login = (req, res, next) => {
   const {email, password} = req.body; 
+  console.log("this is the user in log in --->",req.body.email)
+  console.log("this is the password in log in --->", req.body.password)
 
   const loginError = createError(401, "Email or password incorrect");
    User
@@ -35,6 +37,7 @@ module.exports.login = (req, res, next) => {
          if (!match){
             return next(loginError)
           }
+          console.log("we are in match***")
 
           const token = jwt.sign(
             {id: user._id},
@@ -42,16 +45,17 @@ module.exports.login = (req, res, next) => {
             {expiresIn : "1d"}
           )
 
-          res.json({accesToken : token})
+          res.json({accessToken : token})
         })
     })
     .catch(next)
 }
 
 module.exports.getUser = (req, res, next) => {
-  
+  console.log("checking id-->", req.currentUserId)
   User.findById(req.currentUserId)
   .then((user) => {
+    console.log("checking the user", user)
     res.status(200).json({user});
   })
   .catch(next)

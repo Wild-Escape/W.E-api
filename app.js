@@ -14,7 +14,7 @@ require("./config/db.config");
 app.use(
   cors({
     origin: ["http://localhost:5173"],
-    allowedHeaders: ["Content-Type", "Authorization"],
+    
   })
 );
 
@@ -45,6 +45,21 @@ app.use((error, req, res, next) => {
   } else if (!error.status) {
     error = createError(500);
   }
+
+  const data = {};
+
+  data.message = error.message;
+  data.errors = error.errors
+    ? Object.keys(error.errors).reduce((errors, key) => {
+        return {
+          ...errors,
+          [key]: error.errors[key].message || error.errors[key],
+        };
+      }, {})
+    : undefined;
+
+  res.status(error.status).json(data);
+  next();
 });
 
 app.listen(3000, () => {

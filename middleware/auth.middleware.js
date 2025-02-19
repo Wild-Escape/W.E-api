@@ -25,7 +25,7 @@ module.exports.isAuthenticated = (req, res, next) => {
     if (error) {
       return next(createError(401, error));
     }
-
+    console.log("decoded id", decoded )
     req.currentUserId = decoded.id;
     next();
   });
