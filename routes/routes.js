@@ -32,6 +32,8 @@ router.post(
 router.get("/experiences",  experienceController.getAllTrips);
 // 3. Get details of a specific trip
 router.get("/experience/:id",isAuthenticated, experienceController.getTripById);
+//4. Get the experiences created by a partner
+router.get("/partner/experiences/",isAuthenticated, experienceController.getPartnerExperiences )
 
 
 // RESERVATION CONTROLLER

@@ -45,7 +45,12 @@ module.exports.getTripById = async (req, res, next) => {
     next(error);
   } }
   
-
-
-  
-  // 4. Get All Booked Trips by a User
+  // 3. Get the created experiences of a shelter
+  module.exports.getPartnerExperiences = async(req, res, next) => {
+    try {
+      const shelterTrips = await Experience.find({partner: req.currentUserId})
+      res.status(200).json({shelterTrips});
+    } catch (error) {
+      next(error)
+    }
+  }
