@@ -4,7 +4,7 @@ const createError = require("http-errors");
 module.exports.isAuthenticated = (req, res, next) => {
   
   const authorization = req.header("Authorization");
-  console.log("checking authorization headers in middleware--->", authorization)
+  
 
   if (!authorization) {
     return next(createError(401, "Authorization headder is required"));
@@ -25,7 +25,7 @@ module.exports.isAuthenticated = (req, res, next) => {
     if (error) {
       return next(createError(401, error));
     }
-    console.log("decoded id", decoded )
+    
     req.currentUserId = decoded.id;
     next();
   });

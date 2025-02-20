@@ -4,7 +4,7 @@ const Reservation = require("../models/Reservation.model");
 // Create experience
 module.exports.create = async (req, res, next) => {
     if(req.files) req.body.gallery = req.files.map((file) => file.path);
-   console.log("checking availbale dates in the bakcend START--->>", JSON.parse(req.body.availableDates))
+
     const experience = new Experience({
         ...req.body,
         partner: req.currentUserId,
@@ -24,7 +24,7 @@ module.exports.create = async (req, res, next) => {
 // 1. Get All Trips (for users to view available trips)
 module.exports.getAllTrips = async (req, res, next) => {
   const userId = req.currentUserId
-  console.log("*****inside AllTrips controller****")
+  
 
   try {
     const favorites = await Favorite.find({user: userId})
@@ -50,6 +50,15 @@ module.exports.getTripById = async (req, res, next) => {
     try {
       const shelterTrips = await Experience.find({partner: req.currentUserId})
       res.status(200).json({shelterTrips});
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  module.exports.getPartnerExperienceDetails = async(req, res, next) => { 
+    try {
+      const partnerExperience = await Experience.findById(req.params.id)
+      res.status(200).json({partnerExperience});
     } catch (error) {
       next(error)
     }
