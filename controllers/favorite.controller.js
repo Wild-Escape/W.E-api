@@ -1,6 +1,7 @@
 const Favorite = require("../models/Favorite.model");
 
 module.exports.addToFavorite = async (req, res, next) => {
+  console.log("entered in add to favorites");
   const userId = req.currentUserId;
   const experienceId = req.params.id;
 
@@ -21,3 +22,14 @@ module.exports.addToFavorite = async (req, res, next) => {
     next(error);
   }
 };
+
+module.exports.getFavorites = async (req, res, next) => {
+  const userId = req.currentUserId;
+  try {
+    const user = await Experice.find().populate("favorites");
+    res.status(200).json({ user });
+  } catch (error) {
+    next(error);
+  }
+}
+

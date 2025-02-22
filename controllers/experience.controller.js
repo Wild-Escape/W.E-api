@@ -21,15 +21,16 @@ module.exports.create = async (req, res, next) => {
         next(error);
     }
 };
-// 1. Get All Trips (for users to view available trips)
-module.exports.getAllTrips = async (req, res, next) => {
+// 1. Get All Experiences (for users to view available trips)
+module.exports.getAllExperiences = async (req, res, next) => {
   const userId = req.currentUserId
+  console.log("userId-->", userId)
   
 
   try {
     const favorites = await Favorite.find({user: userId})
-    const trips = await Experience.find();
-    res.status(200).json({ trips });
+    const experiences = await Experience.find();
+    res.status(200).json({ experiences, favorites });
    
   } catch (error) {
     next(error);
