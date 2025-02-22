@@ -37,8 +37,8 @@ module.exports.getAllExperiences = async (req, res, next) => {
   }
 }
   
-  // 2. Get Details of a Specific Trip
-module.exports.getTripById = async (req, res, next) => {
+  // 2. Get Details of a Specific Experience
+module.exports.getExperienceDetails = async (req, res, next) => {
   try {
     const trip = await Experience.findById(req.params.id);
     res.status(200).json({ trip });

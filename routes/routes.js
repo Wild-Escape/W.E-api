@@ -31,7 +31,7 @@ router.post(
 // 2. Get all experiences (for users to view available trips)
 router.get("/experiences",  isAuthenticated, experienceController.getAllExperiences);
 // 3. Get details of a specific trip
-router.get("/experience/:id",isAuthenticated, experienceController.getTripById);
+router.get("/experience/:id",isAuthenticated, experienceController.getExperienceDetails);
 //4. Get the experiences created by a partner
 router.get("/partner/experiences/",isAuthenticated, experienceController.getPartnerExperiences )
 router.get("/partner/experience/:id/details", isAuthenticated, experienceController.getPartnerExperienceDetails)

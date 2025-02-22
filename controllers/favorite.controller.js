@@ -24,10 +24,11 @@ module.exports.addToFavorite = async (req, res, next) => {
 };
 
 module.exports.getFavorites = async (req, res, next) => {
-  const userId = req.currentUserId;
+  
   try {
-    const user = await Experice.find().populate("favorites");
-    res.status(200).json({ user });
+    const favorites = await Favorite.find({user: req.currentUserId}).populate("experience")
+    const favExperiences = favorites.map((favorite)=>favorite.experience)
+    res.status(200).json({ favExperiences });
   } catch (error) {
     next(error);
   }
