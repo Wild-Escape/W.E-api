@@ -29,11 +29,12 @@ router.post(
   experienceController.create
 );
 // 2. Get all experiences (for users to view available trips)
-router.get("/experiences",  experienceController.getAllTrips);
+router.get("/experiences",  isAuthenticated, experienceController.getAllExperiences);
 // 3. Get details of a specific trip
 router.get("/experience/:id",isAuthenticated, experienceController.getTripById);
 //4. Get the experiences created by a partner
 router.get("/partner/experiences/",isAuthenticated, experienceController.getPartnerExperiences )
+router.get("/partner/experience/:id/details", isAuthenticated, experienceController.getPartnerExperienceDetails)
 
 
 // RESERVATION CONTROLLER
@@ -46,5 +47,7 @@ router.post("/experience/:id/book", isAuthenticated, reservationController.bookT
 
 // FAVORITES CONTROLLERS
 router.post("/experiences/:id/favorite", isAuthenticated, favoriteController.addToFavorite )
+router.get("/favorites", isAuthenticated, favoriteController.getFavorites)
+
 
 module.exports = router;

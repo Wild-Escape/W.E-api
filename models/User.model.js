@@ -15,6 +15,7 @@ const UserSchema = new mongoose.Schema(
       default: "user",
       required: true,
     },
+   
   },
   {
     virtuals: true,
@@ -33,17 +34,8 @@ const UserSchema = new mongoose.Schema(
 );
 // Normal user case
 
-UserSchema.virtual("pending-experiences", {
-  ref: "Shelter",
-  localField: "_id",
-  foreignField: "partner",
-});
 
-UserSchema.virtual("confirmed-experiences", {
-  ref: "Shelter",
-  localField: "_id",
-  foreignField: "partner",
-});
+
 
 // Partner case
 
