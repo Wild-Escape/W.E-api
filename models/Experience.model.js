@@ -5,8 +5,16 @@ const ExperienceSchema = new mongoose.Schema(
     name: { type: String, required: true },
     intro: { type: String, required: true },
     price: { type: Number, required: true },
-    category: { type: [String], required: true },
-    duration: { type: String, required: true },
+    currency: { type: String,
+       required: true
+    },
+    
+    duration: { type: Number, required: true },
+    durationType: {
+      type: String,
+      enum: ["hour", "day", "week", "month"],
+      required: true
+    },
     availableDates: [
       {
         start: { type: Date, required: true },
@@ -16,7 +24,7 @@ const ExperienceSchema = new mongoose.Schema(
     bookedDates : [{type: Date}],
     type: {
       type: [String],
-      enum: ["express", "short stay", "long stay"],
+      enum: ["express", "short stay", "long stay", "mixed stay"],
       required: true,
     },
     activities: { type: String, required: true },
@@ -30,7 +38,7 @@ const ExperienceSchema = new mongoose.Schema(
 
     gallery: [{ type: String, required: true }],
     reviews: { type: [mongoose.Schema.Types.ObjectId], ref: "Review" },
-    highlights: { type: [String] },
+    
     status: {
       type: String,
       enum: ["pending", "confirmed", "cancelled"],
