@@ -8,6 +8,7 @@ const { isAuthenticated } = require("../middleware/auth.middleware");
 const experienceController = require("../controllers/experience.controller");
 const reservationController = require("../controllers/reservation.controller");
 const favoriteController = require("../controllers/favorite.controller")
+const userController = require("../controllers/user.controller")
 
 const upload = require("../config/cloudinary.config");
 
@@ -19,6 +20,8 @@ router.post("/login", authController.login);
 router.get("/me", isAuthenticated, authController.getUser);
 
 // USER CONTROLLERS
+router.get("/user/:id", isAuthenticated, userController.userDetails )
+router.post("/user/:id/update", isAuthenticated, upload.single("profileImage"), userController.editUser)
 
 //EXPERIENCE CONTROLLERS
 // 1. Create a experience
