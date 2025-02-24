@@ -48,6 +48,7 @@ module.exports.getExperienceDetails = async (req, res, next) => {
   
   // 3. Get the created experiences of a shelter
   module.exports.getPartnerExperiences = async(req, res, next) => {
+    console.log("getting in experinces**")
     try {
       const shelterTrips = await Experience.find({partner: req.currentUserId})
       res.status(200).json({shelterTrips});
