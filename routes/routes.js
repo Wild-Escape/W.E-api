@@ -21,7 +21,10 @@ router.get("/me", isAuthenticated, authController.getUser);
 
 // USER CONTROLLERS
 router.get("/user/:id", isAuthenticated, userController.userDetails )
-router.post("/user/:id/update", isAuthenticated, upload.single("profileImage"), userController.editUser)
+router.patch("/user/:id/update", isAuthenticated, upload.single("profileImage"), userController.editUser)
+// PARTNER CONTROLLERS
+router.get("/partner/:id", isAuthenticated, userController.partnerDetails )
+router.patch("/partner/:id/update", isAuthenticated, upload.single("profileImage"), userController.editPartner)
 
 //EXPERIENCE CONTROLLERS
 // 1. Create a experience

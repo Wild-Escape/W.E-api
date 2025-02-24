@@ -28,7 +28,7 @@ app.use(express.urlencoded({ extended: false }));
 //app.use(router);
 
 app.use((req, res, next) => {
-  next(createError(304, "Route not found"));
+  next(createError(404, "Route not found"));
 });
 
 app.use((error, req, res, next) => {
