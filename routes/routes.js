@@ -59,6 +59,7 @@ router.get("/favorites", isAuthenticated, favoriteController.getFavorites)
 // STRIPE CONTROLLERS
 
 router.post('/create-payment-intent', isAuthenticated, stripeController.createPaymentIntent);
+router.get('/stripe/publishable-key', isAuthenticated, stripeController.getPublishableKey)
 
 
 module.exports = router;

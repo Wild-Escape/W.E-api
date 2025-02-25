@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 const createError = require("http-errors");
 
 module.exports.isAuthenticated = (req, res, next) => {
-  console.log("we are in the auth middleware")
+  
   const authorization = req.header("Authorization");
   
 
@@ -26,7 +26,7 @@ module.exports.isAuthenticated = (req, res, next) => {
       return next(createError(401, error));
     }
     req.currentUserId = decoded.id;
-    console.log("this is the current id-->", req.currentUserId)
+    
     next();
   });
 };
