@@ -10,6 +10,7 @@ const reservationController = require("../controllers/reservation.controller");
 const favoriteController = require("../controllers/favorite.controller")
 const userController = require("../controllers/user.controller")
 const stripeController = require("../controllers/stripe.controller")
+const paymentController = require("../controllers/payment.controller")
 
 const upload = require("../config/cloudinary.config");
 
@@ -57,9 +58,10 @@ router.post("/experiences/:id/favorite", isAuthenticated, favoriteController.add
 router.get("/favorites", isAuthenticated, favoriteController.getFavorites)
 
 // STRIPE CONTROLLERS
-
 router.post('/create-payment-intent', isAuthenticated, stripeController.createPaymentIntent);
 router.get('/stripe/publishable-key', isAuthenticated, stripeController.getPublishableKey)
 
+// PAYMENT CONTROLLERS
+router.post('/create-payment', isAuthenticated, paymentController.createPayment)
 
 module.exports = router;
