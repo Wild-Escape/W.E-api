@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const ExperienceSchema = new mongoose.Schema(
+
   {
     name: { type: String, required: true },
     intro: { type: String, required: true },
@@ -15,13 +16,13 @@ const ExperienceSchema = new mongoose.Schema(
       enum: ["hour", "day", "week", "month"],
       required: true
     },
+    bookedDates : [{type: Date}],
     availableDates: [
       {
         start: { type: Date, required: true },
         end: { type: Date, required: true },
       },
     ],
-    bookedDates : [{type: Date}],
     type: {
       type: [String],
       enum: ["express", "short stay", "long stay", "mixed stay"],

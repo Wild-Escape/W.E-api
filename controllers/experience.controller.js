@@ -29,7 +29,7 @@ module.exports.getAllExperiences = async (req, res, next) => {
 
   try {
     const favorites = await Favorite.find({user: userId})
-    const experiences = await Experience.find();
+    const experiences = await Experience.find().populate("partner");
     res.status(200).json({ experiences, favorites });
    
   } catch (error) {
@@ -40,7 +40,7 @@ module.exports.getAllExperiences = async (req, res, next) => {
   // 2. Get Details of a Specific Experience
 module.exports.getExperienceDetails = async (req, res, next) => {
   try {
-    const trip = await Experience.findById(req.params.id);
+    const trip = await Experience.findById(req.params.id).populate("partner");
     res.status(200).json({ trip });
   } catch (error) {
     next(error);

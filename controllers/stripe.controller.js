@@ -1,11 +1,11 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 module.exports.createPaymentIntent = async (req, res, next) => {
-    console.log("trying to see amount-->", req.body)
+    // console.log("trying to see amount-->", req.body)
   try {
     const paymentIntent = await stripe.paymentIntents.create({
       currency: "usd",
-      amount: 1000,
+      amount: 1000, // we need to convert the amount to cents (smallest amount of the currency we selected )
       automatic_payment_methods: {
         enabled: true
       },
@@ -14,6 +14,7 @@ module.exports.createPaymentIntent = async (req, res, next) => {
   } catch (error) {
     next(error)
   }
+  
 };
 
 module.exports.getPublishableKey = async (req, res, next) => {
