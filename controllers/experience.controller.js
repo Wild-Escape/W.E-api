@@ -59,7 +59,7 @@ module.exports.getExperienceDetails = async (req, res, next) => {
 
   module.exports.getPartnerExperienceDetails = async(req, res, next) => { 
     try {
-      const partnerExperience = await Experience.findById(req.params.id)
+      const partnerExperience = await Experience.findById(req.params.id).populate("partner")
       res.status(200).json({partnerExperience});
     } catch (error) {
       next(error)

@@ -34,6 +34,7 @@ module.exports.partnerDetails = async (req, res, next) => {
   };
   
   module.exports.editPartner = async (req, res, next) => {
+       
       const data = {
           ...req.body,
           profileImage: req.file.path
