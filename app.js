@@ -8,7 +8,6 @@ const jwt = require("jsonwebtoken");
 const cors = require("cors");
 
 const app = express();
-console.log("before db config line");
 require("./config/db.config");
 
 app.use(

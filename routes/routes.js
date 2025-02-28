@@ -43,6 +43,10 @@ router.get("/experience/:id",isAuthenticated, experienceController.getExperience
 //4. Get the experiences created by a partner
 router.get("/partner/all/experiences",isAuthenticated, experienceController.getPartnerExperiences )
 router.get("/partner/experience/:id/details", isAuthenticated, experienceController.getPartnerExperienceDetails)
+//5. Update the experience
+router.patch("/experience/:id/update", isAuthenticated,
+  upload.array("gallery", 10),
+  experienceController.update);
 
 
 // RESERVATION CONTROLLER

@@ -35,7 +35,10 @@ const ExperienceSchema = new mongoose.Schema(
       required: true,
     },
     location: { type: String, required: true },
-    coordinates: { type: String, default: "dummy coordinates" },
+    coordinates: {
+      lat: {type: Number, required: true},
+      lng: {type: Number, required: true}
+    },
 
     gallery: [{ type: String, required: true }],
     reviews: { type: [mongoose.Schema.Types.ObjectId], ref: "Review" },
