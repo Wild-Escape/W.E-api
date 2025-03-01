@@ -17,3 +17,12 @@ module.exports.createPayment = async (req, res, next) => {
     next(error);
   }
 };
+
+module.exports.getBookedExperiences = async (req, res, next) => {
+  try {
+    const payments = await Payment.find({ user: req.currentUserId }).populate("user experience");
+    res.status(200).json(payments);
+  } catch (error) {
+    next(error);
+  }
+};

@@ -68,4 +68,7 @@ router.get('/stripe/publishable-key', isAuthenticated, stripeController.getPubli
 // PAYMENT CONTROLLERS
 router.post('/create-payment', isAuthenticated, paymentController.createPayment)
 
+// BOOKED EXPERIENCES CONTROLERS
+router.get("/booked/experiences", isAuthenticated, paymentController.getBookedExperiences)
+
 module.exports = router;
