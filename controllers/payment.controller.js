@@ -26,3 +26,14 @@ module.exports.getBookedExperiences = async (req, res, next) => {
     next(error);
   }
 };
+
+module.exports.getPendingExperiences = async (req, res, next) => {
+  try {
+    const payments = await Payment.find().populate("user experience");
+    const pendingPayments = payments.filter((payment) => payment.experience.partner == req.currentUserId && payment.status === "pending") ;
+    res.status(200).json(pendingPayments);
+  } catch (error) {
+    next(error);
+  }
+};
+
