@@ -3,6 +3,30 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const applicationFormSchema = new Schema({
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    },
+    startDate: {
+        type: Date,
+        required: true
+    },
+    duration: {
+        durationNumber: {
+            type: Number,
+            required: true
+        },
+        durationType: {
+            type: String,
+            required: true
+        }
+    },
+    experience: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Experience',
+        required: true
+    },
     firstName: {
         type: String,
         required: true
@@ -30,7 +54,6 @@ const applicationFormSchema = new Schema({
     },
     previousExperiences: {
         type: String,
-        enum: ['none', 'some', 'many'],
         required: true
     },
     motive: {

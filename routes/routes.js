@@ -11,7 +11,7 @@ const favoriteController = require("../controllers/favorite.controller")
 const userController = require("../controllers/user.controller")
 const stripeController = require("../controllers/stripe.controller")
 const paymentController = require("../controllers/payment.controller")
-
+const applicationControllers = require("../controllers/application.controller")
 const upload = require("../config/cloudinary.config");
 
 router.get("/", miscControllers.test);
@@ -73,6 +73,10 @@ router.get("/booked/experiences", isAuthenticated, paymentController.getBookedEx
 router.get("/pending/experiences", isAuthenticated, paymentController.getPendingExperiences)
 router.post("/confirm/experience/:id",isAuthenticated, paymentController.confirmExperience)
 router.post("/decline/experience/:id",isAuthenticated, paymentController.declineExperience)
+
+// APPLICATION CONTROLLERS
+router.post("/application/create", isAuthenticated, applicationControllers.sendApplication)
+
 
 
 
