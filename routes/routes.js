@@ -71,6 +71,8 @@ router.post('/create-payment', isAuthenticated, paymentController.createPayment)
 // BOOKED EXPERIENCES CONTROLERS
 router.get("/booked/experiences", isAuthenticated, paymentController.getBookedExperiences)
 router.get("/pending/experiences", isAuthenticated, paymentController.getPendingExperiences)
+router.post("/confirm/experience/:id",isAuthenticated, paymentController.confirmExperience)
+router.post("/decline/experience/:id",isAuthenticated, paymentController.declineExperience)
 
 
 
