@@ -86,3 +86,17 @@ module.exports.reviewApplication = async (req, res, next) => {
     next(error)
   }
 }
+
+module.exports.getConfirmedExperiences = async (req, res, next) => {
+  try {
+    const payments = await Payment.find().populate("user experience");
+    const pendingPayments = payments.filter(
+      (payment) =>
+        payment.experience.partner == req.currentUserId &&
+        payment.status === "confirmed"
+    );
+    res.status(200).json(pendingPayments);
+  } catch (error) {
+    next(error);
+  }
+};
