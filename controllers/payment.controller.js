@@ -1,4 +1,5 @@
 const Payment = require("../models/Payment.model");
+const Application = require ("../models/ApplicationForm.model")
 
 module.exports.createPayment = async (req, res, next) => {
   const { experience, price, dates } = req.body;
@@ -74,3 +75,14 @@ module.exports.declineExperience = async (req, res, next) => {
     next(error);
   }
 };
+
+module.exports.reviewApplication = async (req, res, next) => {
+  const paymentId = req.params.paymentId;
+  try {
+    const payment = await Payment.findById(paymentId).populate("user experience")
+    const application = await Application.find({user: payment.user}).populate("user")
+    res.status(200).json({payment, application} );
+  } catch(error){
+    next(error)
+  }
+}
