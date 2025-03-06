@@ -18,7 +18,7 @@ module.exports.detail = async (req, res) => {
   const chatId = req.params.chatId;
 
   try {
-    const chat = await Chat.findById(chatId).populate("messages participants");
+    const chat = await Chat.findById(chatId).populate({path: "messages", populate: { path: "sender", },}).populate("participants");
     if (!chat) return res.status(404).json({ message: "Chat not found" });
 
     res.status(200).json(chat);
