@@ -6,7 +6,7 @@ module.exports.list = async (req, res) => {
   const userId = req.currentUserId;
 
   try {
-    const chats = await Chat.find({ participants: userId }).populate("participants");
+    const chats = await Chat.find({ participants: userId }).populate("participants messages");
     res.status(200).json(chats);
   } catch (error) {
     res.status(500).json({ message: error.message });
