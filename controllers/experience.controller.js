@@ -86,3 +86,12 @@ module.exports.update = async (req, res, next) => {
     next(error);
   }
 };
+
+module.exports.delete = async (req, res, next) => {
+  try {
+    const deletedExperience = await Experience.findByIdAndDelete(req.params.id);
+    res.status(200).json({ deletedExperience });
+  } catch (error) {
+    next(error);
+  }
+};

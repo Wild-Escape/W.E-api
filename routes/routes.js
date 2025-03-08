@@ -47,6 +47,7 @@ router.get("/partner/experience/:id/details", isAuthenticated, experienceControl
 router.patch("/experience/:id/update", isAuthenticated,
   upload.array("gallery", 10),
   experienceController.update);
+router.delete("/experience/:id/delete", isAuthenticated, experienceController.delete);
 
 // RESERVATION CONTROLLER
 router.post("/experience/:id/book", isAuthenticated, reservationController.bookTrip);
