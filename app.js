@@ -1,6 +1,8 @@
 require("dotenv").config();
+require("math-intrinsics");
 
 const express = require("express");
+
 const router = require("./routes/routes");
 const mongoose = require("mongoose");
 const createError = require("http-errors");
