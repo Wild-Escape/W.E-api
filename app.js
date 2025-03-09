@@ -1,5 +1,5 @@
 require("dotenv").config();
-require("math-intrinsics");
+
 
 const express = require("express");
 
