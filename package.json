@@ -98,6 +98,18 @@
 
 
 
+  },
+
+
+
+  "devDependencies": {
+
+
+
+    "@flydotio/dockerfile": "^0.7.8"
+
+
+
   }
 
 
