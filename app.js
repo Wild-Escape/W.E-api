@@ -1,6 +1,5 @@
 require("dotenv").config();
 
-
 const express = require("express");
 
 const router = require("./routes/routes");
@@ -14,12 +13,11 @@ require("./config/db.config");
 
 app.use(
   cors({
-    origin: ["http://localhost:5173"],
-    
+    origin: ["http://localhost:5173", "https://w-e-api.onrender.com"],
   })
 );
 
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
