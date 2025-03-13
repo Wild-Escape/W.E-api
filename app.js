@@ -13,7 +13,7 @@ require("./config/db.config");
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://w-e-app.vercel.app/"],
+    origin: ["http://localhost:5173", "https://w-e-1hmoaouat-vladys00s-projects.vercel.app", "https://w-e-app.vercel.app"],
   })
 );
 
