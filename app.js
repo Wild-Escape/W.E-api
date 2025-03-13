@@ -13,7 +13,7 @@ require("./config/db.config");
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://w-e-api.onrender.com"],
+    origin: ["http://localhost:5173", "https://w-e-app.vercel.app"],
   })
 );
 
