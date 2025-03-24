@@ -14,7 +14,10 @@ module.exports.addToFavorite = async (req, res, next) => {
       await Favorite.deleteOne({ _id: existingFavorite._id });
       res.status(200).json({ message: "Removed from favorites" });
     } else {
-      const addFavorite = new Favorite({ user: userId, experience: experienceId });
+      const addFavorite = new Favorite({
+        user: userId,
+        experience: experienceId,
+      });
       await addFavorite.save();
       res.status(201).json({ message: "Added to favorites", addFavorite });
     }
@@ -24,13 +27,13 @@ module.exports.addToFavorite = async (req, res, next) => {
 };
 
 module.exports.getFavorites = async (req, res, next) => {
-  
   try {
-    const favorites = await Favorite.find({user: req.currentUserId}).populate("experience")
-    const favExperiences = favorites.map((favorite)=>favorite.experience)
+    const favorites = await Favorite.find({ user: req.currentUserId }).populate(
+      "experience"
+    );
+    const favExperiences = favorites.map((favorite) => favorite.experience);
     res.status(200).json({ favExperiences });
   } catch (error) {
     next(error);
   }
-}
-
+};

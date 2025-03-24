@@ -1,7 +1,5 @@
 const Chat = require("../models/Chat.model");
-const Message = require("../models/Message.model");
 
-// Get all chats
 module.exports.list = async (req, res) => {
   const userId = req.currentUserId;
 

@@ -1,7 +1,7 @@
 const Favorite = require("../models/Favorite.model");
 const Experience = require("../models/Experience.model");
-const Reservation = require("../models/Reservation.model");
-// Create experience
+
+
 module.exports.create = async (req, res, next) => {
   if (req.files) req.body.gallery = req.files.map((file) => file.path);
   console.log("data in create route-->", req.body);
