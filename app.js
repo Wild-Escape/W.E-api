@@ -2,15 +2,16 @@ require("dotenv").config();
 
 const express = require("express");
 const app = express();
-const mongoose = require("mongoose");
 
-const router = require("./routes/routes");
 const createError = require("http-errors");
-const jwt = require("jsonwebtoken");
-const cors = require("cors");
+const mongoose = require("mongoose");
 
 require("./config/db.config");
 
+const router = require("./routes/routes");
+const jwt = require("jsonwebtoken");
+
+const cors = require("cors");
 app.use(
   cors({
     origin: ["http://localhost:5173", "https://w-e-app.vercel.app"],
@@ -21,12 +22,7 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
 app.use(router);
-
-app.use(express.urlencoded({ extended: false }));
-
-//app.use(router);
 
 app.use((req, res, next) => {
   next(createError(404, "Route not found"));
