@@ -1,14 +1,14 @@
 require("dotenv").config();
 
 const express = require("express");
+const app = express();
+const mongoose = require("mongoose");
 
 const router = require("./routes/routes");
-const mongoose = require("mongoose");
 const createError = require("http-errors");
 const jwt = require("jsonwebtoken");
 const cors = require("cors");
 
-const app = express();
 require("./config/db.config");
 
 app.use(
