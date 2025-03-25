@@ -12,9 +12,10 @@ const router = require("./routes/routes");
 const jwt = require("jsonwebtoken");
 
 const cors = require("cors");
+app.options('*', cors());  // Enable preflight requests for all routes
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://w-e-app.vercel.app"],
+    origin: ["http://localhost:5173", "https://w-e-app.vercel.app", "https://w-e-app.vercel.app/"],
   })
 );
 
